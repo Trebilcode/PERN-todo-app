@@ -1,7 +1,14 @@
 import React, { Fragment } from 'react'
+import InputTodo from './components/InputTodo'
 
 const App = () => {
-  return <Fragment><h1>hey</h1></Fragment>
+  return (
+    <Fragment> 
+      <div className="container">
+        <InputTodo /> 
+      </div>  
+    </Fragment>
+  )
 }
 
 export default App;
