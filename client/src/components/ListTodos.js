@@ -14,6 +14,18 @@ const ListTodos = () => {
 		}
 	};
 
+	const onDeleteTodo = async todoId => {
+		try {
+			const deleteTodo = await fetch(`http://localhost:5000/todos/${todoId}`, {
+				method: 'DELETE',
+      });
+
+      setTodos(todos.filter(todo => todo.todo_id !== todoId))
+      
+      console.log(deleteTodo);
+		} catch (error) {}
+	};
+
 	useEffect(() => {
 		getTodos();
 	}, []);
@@ -33,12 +45,19 @@ const ListTodos = () => {
 				<tbody>
 					{
 						todos.map(todo => (
-							<tr>
-                <td>{todo.description}</td>
-                <td>Edit</td>
-                <td>Delete</td>
-              </tr>
-            )) /* <tr>
+							<tr key={todo.todo_id}>
+								<td>{todo.description}</td>
+								<td>Edit</td>
+								<td>
+									<button
+										onClick={() => onDeleteTodo(todo.todo_id)}
+										className='btn btn-danger'
+									>
+										Delete
+									</button>
+								</td>
+							</tr>
+						)) /* <tr>
 						<th scope='row'>1</th>
 						<td>Mark</td>
 						<td>Otto</td>
