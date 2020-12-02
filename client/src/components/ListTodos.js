@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import EditTodo from './EditTodo';
 
 const ListTodos = () => {
 	const [todos, setTodos] = useState([]);
@@ -34,7 +35,7 @@ const ListTodos = () => {
 
 	return (
 		<div>
-			<table className='table'>
+			<table className='table mt-5'>
 				<thead>
 					<tr>
 						<th scope='col'>Description</th>
@@ -47,7 +48,7 @@ const ListTodos = () => {
 						todos.map(todo => (
 							<tr key={todo.todo_id}>
 								<td>{todo.description}</td>
-								<td>Edit</td>
+								<td><EditTodo todo={todo}/></td>
 								<td>
 									<button
 										onClick={() => onDeleteTodo(todo.todo_id)}
